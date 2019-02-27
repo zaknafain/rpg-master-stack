@@ -2,11 +2,11 @@ version: '3.7'
 services:
   web:
     build:
-      context: ../../rpg-master-webserver
+      context: ../rpg-master-webserver
       dockerfile: Dockerfile
     volumes:
     - type: bind
-      source: ../../rpg-master-webserver
+      source: ../rpg-master-webserver
       target: /rpg-master-webserver
     depends_on:
       - frontend
@@ -16,29 +16,26 @@ services:
     # - "443:443"
 
   frontend:
-    build:
-      context: ../../rpg-master-frontend
-      dockerfile: Dockerfile
-    command: sh -c "npm install && npm start"
+    image: zaknafain/rpg-master-frontend:1.0
     volumes:
     - type: bind
-      source: ../../rpg-master-frontend
+      source: ../rpg-master-frontend
       target: /rpg-master-frontend
     depends_on:
       - api
 
   api:
     build:
-      context: ../../rpg-master-api
+      context: ../rpg-master-api
       dockerfile: Dockerfile
     volumes:
     - type: bind
-      source: ../../rpg-master-api
+      source: ../rpg-master-api
       target: /rpg-master-api
     depends_on:
       - mysql
     env_file:
-    - ../../rpg-master-api/.env
+    - ../rpg-master-api/.env
 
   mysql:
     image: mysql:5.7
