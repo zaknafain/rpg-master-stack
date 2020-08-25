@@ -1,5 +1,16 @@
 version: '3.8'
 services:
+  frontend:
+    image: zaknafain/rpg-master-frontend:1.0.0-SNAPSHOT
+    volumes:
+    - type: bind
+      source: ../rpg-master-frontend
+      target: /rpg-master-frontend
+    ports:
+      - "4200:4200"
+    depends_on:
+      - api
+
   api:
     image: zaknafain/rpg-master-api:1.0.0
     volumes:
