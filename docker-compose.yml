@@ -1,5 +1,20 @@
 version: '3.8'
 services:
+  # web:
+  #   build:
+  #     context: ../rpg-master-webserver
+  #     dockerfile: Dockerfile
+  #   volumes:
+  #   - type: bind
+  #     source: ../rpg-master-webserver
+  #     target: /rpg-master-webserver
+  #   depends_on:
+  #     - frontend
+  #     - api
+  #   ports:
+  #   - "80:80"
+    # - "443:443"
+
   frontend:
     image: zaknafain/rpg-master-frontend:1.0.0-SNAPSHOT
     volumes:
@@ -12,7 +27,7 @@ services:
       - api
 
   api:
-    image: zaknafain/rpg-master-api:1.0.0
+    image: zaknafain/rpg-master-api:1.0.1
     volumes:
     - type: bind
       source: ../rpg-master-api
